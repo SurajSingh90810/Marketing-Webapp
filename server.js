@@ -4,7 +4,18 @@ const cors = require("cors");
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 const app = express();
-app.use(cors());
+
+// UPDATE: Configure CORS to specifically allow your Vercel app and local dev
+app.use(
+  cors({
+    origin: [
+      "https://marketing-webapp-taupe.vercel.app", // Your deployed frontend
+      "http://localhost:5173", // Optional: Keep this if you still want to test locally (assuming Vite defaults to 5173)
+      "http://localhost:3000", // Optional: Keep this if you use Create React App locally
+    ],
+  }),
+);
+
 app.use(express.json());
 
 // Initialize AI
@@ -32,4 +43,6 @@ app.post("/api/generate-caption", async (req, res) => {
   }
 });
 
-app.listen(5000, () => console.log("Server running on port 5000"));
+// Using process.env.PORT is important for deployment platforms like Render or Heroku
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
