@@ -15,8 +15,9 @@ function App() {
     e.preventDefault();
     setLoading(true);
     try {
+      // Dynamically access the URL from your environment variable
       const response = await axios.post(
-        "http://localhost:5000/api/generate-caption",
+        `${import.meta.env.VITE_API_URL}/api/generate-caption`,
         data,
       );
       setResult(response.data.caption);
