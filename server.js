@@ -9,9 +9,9 @@ const app = express();
 app.use(
   cors({
     origin: [
-      "https://marketing-webapp-taupe.vercel.app", // Your deployed frontend
-      "http://localhost:5173", // Optional: Keep this if you still want to test locally (assuming Vite defaults to 5173)
-      "http://localhost:3000", // Optional: Keep this if you use Create React App locally
+      "https://marketing-webapp-taupe.vercel.app", 
+      "http://localhost:5173",  
+      "http://localhost:3000",  
     ],
   }),
 );
