@@ -15,11 +15,8 @@ function App() {
     e.preventDefault();
     setLoading(true);
     try {
-      // It will try to use the environment variable first (for local dev)
-      // If it doesn't exist (like on Vercel), it defaults to your live Render URL
-      const apiUrl =
-        import.meta.env.VITE_API_URL ||
-        "https://marketing-webapp-z0hb.onrender.com";
+      // Hardcode the Render URL here
+      const apiUrl = "https://marketing-webapp-z0hb.onrender.com";
 
       const response = await axios.post(`${apiUrl}/api/generate-caption`, data);
       setResult(response.data.caption);
