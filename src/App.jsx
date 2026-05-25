@@ -15,9 +15,10 @@ function App() {
     e.preventDefault();
     setLoading(true);
     try {
-      // Hardcode the Render URL here
+      // 1. COMPLETELY HARDCODED for production
       const apiUrl = "https://marketing-webapp-z0hb.onrender.com";
 
+      // 2. Make the request
       const response = await axios.post(`${apiUrl}/api/generate-caption`, data);
       setResult(response.data.caption);
     } catch (error) {
