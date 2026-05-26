@@ -15,11 +15,16 @@ function App() {
     e.preventDefault();
     setLoading(true);
     try {
-      // 1. COMPLETELY HARDCODED for production
-      const apiUrl = "https://marketing-webapp-z0hb.onrender.com";
-
-      // 2. Make the request
-      const response = await axios.post(`${apiUrl}/api/generate-caption`, data);
+      const apiUrl = import.meta.env.VITE_API_URL;
+      const response = await axios.post(
+        `${apiUrl}/api/generate-caption`,
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
+      );
       setResult(response.data.caption);
     } catch (error) {
       console.error(error);
