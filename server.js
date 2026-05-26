@@ -6,13 +6,14 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 const app = express();
 
-app.use(cors());
+
 app.use(
   cors({
     origin: "https://marketing-webapp-taupe.vercel.app",
     methods: ["GET", "POST"],
   }),
 );
+app.use(express.json());
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 app.get("/", (req, res) => {
